@@ -30,7 +30,6 @@
   display: flex;
   flex-direction: column;
   padding: 16px;
-  gap: 5px;
 }
 
 .task {
@@ -49,6 +48,8 @@
   flex-direction: column;
   cursor: pointer;
 }
+
+
 
 .task:hover {
   background-color: #f0f0f0;
@@ -125,7 +126,30 @@
   display: flex;
   width: 100%;
   gap: 10px;
+  position: relative;
+  margin-bottom: 5px;
 }
+
+.task-box.deleted {
+  animation: delete-task .6s ease-in-out forwards;
+}
+
+@keyframes delete-task {
+  0% {
+    opacity: 1;
+    height: 50px;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
 
 .checkbox {
   width: 20px;

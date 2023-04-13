@@ -49,8 +49,9 @@ function App() {
   ]);
   const renderTasks = () => {
     return tasks.map((task) => (
-      <div key={task.id} className="task-box">
+      <div key={task.id} className="task-box" id={`task-box-${task.id}`}>
         <li
+          id={`task-${task.id}`}
           key={task.id}
           className="task"
           onClick={() => handleTaskClick(task.id)}
@@ -72,9 +73,15 @@ function App() {
   const [taskName, setTaskName] = useState("");
 
   const handleTrashClick = (index) => {
+    const taskBox = document.getElementById(`task-box-${index}`);
+    taskBox.classList.add("deleted");
+
     const newTasks = [...tasks];
     newTasks.splice(index, 1);
-    setTasks(newTasks.map((task, i) => ({ ...task, id: i })));
+    setTimeout(() => {
+      document.querySelector('.deleted').classList.remove('deleted');
+      setTasks(newTasks.map((task, i) => ({ ...task, id: i })));
+    }, 600);
   };
 
   const handleAddTask = () => {
