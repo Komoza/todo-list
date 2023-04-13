@@ -5,42 +5,42 @@ import "./App.css";
 function App() {
   const [tasks, setTasks] = useState([
     {
-      id: 1,
+      id: 0,
       name: "Task #1",
       text: "I need to do something",
       done: true,
       isExpanded: false,
     },
     {
-      id: 2,
+      id: 1,
       name: "Task #2",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe excepturi officiis eos magni dicta! Ullam repellendus at culpa ex, rerum ea perferendis porro velit magni temporibus nam quae, consectetur facilis blanditiis eos possimus veniam alias sapiente doloremque ipsa. Minima nostrum accusamus quisquam minus natus corrupti doloribus amet pariatur veritatis facere.",
       done: false,
       isExpanded: false,
     },
     {
-      id: 3,
+      id: 2,
       name: "Task #3",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe excepturi officiis eos magni dicta! Ullam repellendus at culpa ex, rerum ea perferendis porro velit magni temporibus nam quae, consectetur facilis blanditiis eos possimus veniam alias sapiente doloremque ipsa. Minima nostrum accusamus quisquam minus natus corrupti doloribus amet pariatur veritatis facere.",
       done: true,
       isExpanded: false,
     },
     {
-      id: 4,
+      id: 3,
       name: "Task #4",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe excepturi officiis eos magni dicta! Ullam repellendus at culpa ex, rerum ea perferendis porro velit magni temporibus nam quae, consectetur facilis blanditiis eos possimus veniam alias sapiente doloremque ipsa. Minima nostrum accusamus quisquam minus natus corrupti doloribus amet pariatur veritatis facere.",
       done: false,
       isExpanded: false,
     },
     {
-      id: 5,
+      id: 4,
       name: "Task #5",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe excepturi officiis eos magni dicta! Ullam repellendus at culpa ex, rerum ea perferendis porro velit magni temporibus nam quae, consectetur facilis blanditiis eos possimus veniam alias sapiente doloremque ipsa. Minima nostrum accusamus quisquam minus natus corrupti doloribus amet pariatur veritatis facere.",
       done: false,
       isExpanded: false,
     },
     {
-      id: 6,
+      id: 5,
       name: "Task #6",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe excepturi officiis eos magni dicta! Ullam repellendus at culpa ex, rerum ea perferendis porro velit magni temporibus nam quae, consectetur facilis blanditiis eos possimus veniam alias sapiente doloremque ipsa. Minima nostrum accusamus quisquam minus natus corrupti doloribus amet pariatur veritatis facere.",
       done: true,
@@ -49,7 +49,7 @@ function App() {
   ]);
   const renderTasks = () => {
     return tasks.map((task) => (
-      <div className="task-box">
+      <div key={task.id} className="task-box">
         <li
           key={task.id}
           className="task"
@@ -58,6 +58,8 @@ function App() {
           {task.name}
           {task.isExpanded && <div className="task-text">{task.text}</div>}
         </li>
+        <div className="edit"></div>
+        <div className="trash" onClick={() => handleTrashClick(task.id)}></div>
       </div>
     ));
   };
@@ -69,12 +71,18 @@ function App() {
   const [taskText, setTaskText] = useState("");
   const [taskName, setTaskName] = useState("");
 
+  const handleTrashClick = (index) => {
+    const newTasks = [...tasks];
+    newTasks.splice(index, 1);
+    setTasks(newTasks.map((task, i) => ({ ...task, id: i })));
+  };
+
   const handleAddTask = () => {
     if (taskName === "" || taskText === "") return;
     setTasks((prevTasks) => [
       ...prevTasks,
       {
-        id: prevTasks.length + 1,
+        id: prevTasks.length,
         name: taskName,
         text: taskText,
         done: false,
