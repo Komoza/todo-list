@@ -47,11 +47,9 @@ function App() {
       isExpanded: false,
     },
   ]);
-
   const renderTasks = () => {
     return tasks.map((task) => (
       <div className="task-box">
-        <input type="checkbox" checked={task.done} className="checkbox"></input>
         <li
           key={task.id}
           className="task"
@@ -59,11 +57,6 @@ function App() {
         >
           {task.name}
           {task.isExpanded && <div className="task-text">{task.text}</div>}
-
-          <div className="task-option">
-            <div className="edit">edit</div>
-            <div className="delete">del</div>
-          </div>
         </li>
       </div>
     ));
