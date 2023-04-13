@@ -35,9 +35,6 @@
 .task {
   flex-grow: 1;
   max-width: 446px;
-  font-size: 18px;
-  font-weight: 400;
-  color: #424242;
   padding: 8px;
   background-color: #fff;
   transition: all 0.2s ease-in-out;
@@ -65,13 +62,15 @@
   cursor: pointer;
   border-radius: 5px;
   width: 200px;
+  height: 44px;
+  text-align: center;
 }
 .--active {
   background-color: #4286f4;
 }
 
 .--active:hover {
-  background-color: #4da7ff;
+  opacity: 0.8;
 }
 
 .add-task:focus {
@@ -193,4 +192,44 @@
 .edit:hover {
   background-color: #f0f0f0;
   transform: scale(1.02);
+}
+
+.inputEdit {
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  resize: none;
+  height: auto;
+}
+
+.task-name {
+  font-size: 18px;
+  font-weight: 400;
+  color: #424242;
+}
+
+.--edit {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.task-button{
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.-save {
+  background-color: rgb(13, 197, 13);
+}
+.-close {
+  background-color: rgb(233, 77, 77);
 }
